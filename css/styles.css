@@ -13,6 +13,8 @@
 
 	--bgColor-button-primary-active: #4c6ef5;
 	--bgColor-button-primary-hover: #5c7cfa;
+	--bgColor-button-default-active: #868e96;
+	--bgColor-button-default-hover: #adb5bd;
 }
 
 body {
@@ -34,7 +36,6 @@ body {
 }
 
 .btn {
-	background-color: var(--bgColor-button-primary-active);
 	border: 0;
 	border-radius: 500px;
 	color: var(--fgColor-white);
@@ -42,8 +43,20 @@ body {
 	padding: 10px 20px;
 }
 
-.btn:hover {
+.primary-btn {
+	background-color: var(--bgColor-button-primary-active);
+}
+
+.primary-btn:hover {
 	background-color: var(--bgColor-button-primary-hover);
+}
+
+.default-button {
+	background-color: var(--bgColor-button-default-active);
+}
+
+.default-button:hover {
+	background-color: var(--bgColor-button-default-hover);
 }
 
 .add-book-btn {
