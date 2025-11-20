@@ -22,6 +22,27 @@
 		</div>
 		<dialog class="add-book-modal" id="addBookModal">
 			<h1>Add Book</h1>
+			<form class="add-book-form">
+				<div class="form-field">
+					<label for="bookTitle">Title:</label>
+					<input type="text" name="bookTitle" id="bookTitle" required>
+				</div>
+				<div class="form-field">
+					<label for="bookAuthor">Author:</label>
+					<input type="text" name="bookAuthor" id="bookAuthor" required>
+				</div>
+				<div class="form-field">
+					<label for="bookNumberOfPages">Number of Pages:</label>
+					<input type="number" name="bookNumberOfPages" id="bookNumberOfPages" min="1">
+				</div>
+				<div class="form-field">
+					<label for="bookReadStatus">Read Status:</label>
+					<select name="bookReadStatus" id="bookReadStatus">
+						<option value="Unread">Unread</option>
+						<option value="Read">Read</option>
+					</select>
+				</div>
+			</form>
 			<button class="close-modal-btn btn" id="closeModalBtn">Cancel</button>
 		</dialog>
 		<script src="./script.js"></script>
