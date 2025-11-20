@@ -25,7 +25,7 @@ ol, ul {
 	list-style: none;
 }
 
-input, button {
+input, button, select {
 	font: inherit;
 }
 
