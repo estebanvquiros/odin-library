@@ -3,9 +3,13 @@
 	--bgColor-primary-muted: #edf2ff;
 
 	--bgColor-neutral: #212529;
+	--bgColor-neutral-40: #ced4da;
 
 	--fgColor-white: #fff;
 	--fgColor-black: #000;
+
+	--bgColor-sucess: #37b24d;
+	--bgColor-fail: #f03e3e;
 }
 
 body {
@@ -26,7 +30,50 @@ body {
 
 .content {
 	background-color: var(--bgColor-primary-muted);
+	display: grid;
 	flex: 1;
+	gap: 20px;
+	grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+	padding: 20px;
+}
+
+.book-card {
+	background-color: var(--bgColor-neutral-40);
+	border-radius: 20px;
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+	gap: 10px;
+	height: 20rem;
+	justify-items: center;
+}
+
+.read-status {
+	align-self: center;
+	border-radius: 0px 50px 50px 0px;
+	color: var(--fgColor-white);
+	font-size: 0.8rem;
+	justify-self: left;
+	padding: 5px 20px;
+}
+
+.read-status.read {
+	background-color: var(--bgColor-sucess);
+}
+
+.read-status.unread {
+	background-color: var(--bgColor-fail);
+}
+
+.book-card > h1 {
+	align-self: end;
+	font-size: 1.5rem;
+	text-align: center;
+}
+
+.book-card > h2 {
+	align-self: start;
+	font-size: 1rem;
+	font-style: italic;
 }
 
 .footer {
@@ -35,4 +82,3 @@ body {
 	padding: 15px;
 	text-align: center;
 }
-
