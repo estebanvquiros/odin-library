@@ -10,6 +10,9 @@
 
 	--bgColor-sucess: #37b24d;
 	--bgColor-fail: #f03e3e;
+
+	--bgColor-button-active: #4c6ef5;
+	--bgColor-button-hover: #5c7cfa;
 }
 
 body {
@@ -25,7 +28,36 @@ body {
 .header {
 	background-color: var(--bgColor-primary);
 	color: var(--fgColor-white);
+	display: flex;
+	justify-content: space-between;
 	padding: 20px;
+}
+
+.btn {
+	background-color: var(--bgColor-button-active);
+	border: 0;
+	border-radius: 500px;
+	color: var(--fgColor-white);
+	font-weight: bold;
+	padding: 10px 20px;
+}
+
+.btn:hover {
+	background-color: var(--bgColor-button-hover);
+}
+
+.add-book-btn {
+	box-shadow: 0 0 0 2px var(--fgColor-white);
+	transition: box-shadow 200ms ease-out;
+}
+
+.add-book-btn:hover {
+	box-shadow: 0 0 0 4px var(--fgColor-white);
+}
+
+dialog {
+	margin: auto;
+	padding: 40px 20px;
 }
 
 .content {

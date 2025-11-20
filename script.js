@@ -2,6 +2,10 @@ const myLibrary = [];
 
 const content = document.querySelector("#content");
 
+const addBookBtn = document.querySelector("#addBookBtn");
+const addBookModal = document.querySelector("#addBookModal");
+const closeModalBtn = document.querySelector("#closeModalBtn");
+
 function Book(title, author, numberOfPages, readStatus) {
 	this.id = crypto.randomUUID();
 	this.title = title;
@@ -46,6 +50,14 @@ function displayBook(book) {
 	bookCard.appendChild(bookNumberOfPages);
 	content.appendChild(bookCard);
 }
+
+addBookBtn.addEventListener("click", () => {
+	addBookModal.showModal();
+});
+
+closeModalBtn.addEventListener("click", () => {
+	addBookModal.close();
+});
 
 // Simulation of books stored previously in memory
 myLibrary.push(new Book("The Broken Sword", "Poul Anderson", 320, "Read"));
