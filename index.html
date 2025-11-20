@@ -22,7 +22,7 @@
 		</div>
 		<dialog class="add-book-modal" id="addBookModal">
 			<h1>Add Book</h1>
-			<form class="add-book-form">
+			<form class="add-book-form" id="addBookForm">
 				<div class="form-field">
 					<label for="bookTitle">Title:</label>
 					<input type="text" name="bookTitle" id="bookTitle" required>
@@ -44,6 +44,7 @@
 				</div>
 			</form>
 			<button class="close-modal-btn btn default-button" id="closeModalBtn">Cancel</button>
+            <button class="add-book-form-btn btn primary-btn" type="submit" form="addBookForm">Add Book</button>
 		</dialog>
 		<script src="./script.js"></script>
 	</body>

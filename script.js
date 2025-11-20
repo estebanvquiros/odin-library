@@ -3,6 +3,11 @@ const myLibrary = [];
 const content = document.querySelector("#content");
 
 const addBookBtn = document.querySelector("#addBookBtn");
+const addBookForm = document.querySelector("#addBookForm");
+const addBookFormTitle = document.querySelector("#bookTitle");
+const addBookFormAuthor = document.querySelector("#bookAuthor");
+const addBookFormNumberOfPages = document.querySelector("#bookNumberOfPages");
+const addBookFormReadStatus = document.querySelector("#bookReadStatus");
 const addBookModal = document.querySelector("#addBookModal");
 const closeModalBtn = document.querySelector("#closeModalBtn");
 
@@ -17,6 +22,7 @@ function Book(title, author, numberOfPages, readStatus) {
 function addBook(title, author, numberOfPages, readStatus) {
 	const book = new Book(title, author, numberOfPages, readStatus);
 	myLibrary.push(book);
+    displayBook(book);
 }
 
 function getBooks() {
@@ -55,14 +61,27 @@ addBookBtn.addEventListener("click", () => {
 	addBookModal.showModal();
 });
 
+addBookForm.addEventListener("submit", (e) => {
+    e.preventDefault(); //Avoid page reload on form submit
+    addBook(
+        addBookFormTitle.value,
+        addBookFormAuthor.value,
+        addBookFormNumberOfPages.value,
+        addBookFormReadStatus.value,
+    );
+    addBookModal.close();
+    addBookForm.reset();
+});
+
 closeModalBtn.addEventListener("click", () => {
 	addBookModal.close();
+    addBookForm.reset();
 });
 
 // Simulation of books stored previously in memory
 myLibrary.push(new Book("The Broken Sword", "Poul Anderson", 320, "Read"));
 myLibrary.push(new Book("The First Law", "Joe Abercrombie", 537, "Unread"));
+getBooks();
 
 addBook("The Name of the Wind", "Patrick Rothfuss", 704, "Read");
 
-getBooks();
