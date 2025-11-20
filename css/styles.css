@@ -81,7 +81,7 @@ dialog {
 
 .read-status {
 	align-self: center;
-	border-radius: 0px 50px 50px 0px;
+	border-radius: 0 50px 50px 0;
 	color: var(--fgColor-white);
 	font-size: 0.8rem;
 	justify-self: left;
