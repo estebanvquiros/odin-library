@@ -1,0 +1,38 @@
+:root {
+	--bgColor-primary: #4c6ef5;
+	--bgColor-primary-muted: #edf2ff;
+
+	--bgColor-neutral: #212529;
+
+	--fgColor-white: #fff;
+	--fgColor-black: #000;
+}
+
+body {
+	font-family: "Poppins", sans-serif;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.header {
+	background-color: var(--bgColor-primary);
+	color: var(--fgColor-white);
+	padding: 20px;
+}
+
+.content {
+	background-color: var(--bgColor-primary-muted);
+	flex: 1;
+}
+
+.footer {
+	background-color: var(--bgColor-neutral);
+	color: var(--fgColor-white);
+	padding: 15px;
+	text-align: center;
+}
+
