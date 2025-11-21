@@ -81,7 +81,7 @@ function displayBook(book) {
 	bookCard.appendChild(bookReadStatus);
     bookCard.appendChild(bookInfo);
     bookCard.appendChild(bookControls);
-	content.appendChild(bookCard);
+	content.prepend(bookCard);
 }
 
 function removeBookFromLibrary(bookId) {
