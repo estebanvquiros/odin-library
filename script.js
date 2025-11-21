@@ -34,6 +34,7 @@ function getBooks() {
 function displayBook(book) {
 	const bookCard = document.createElement("div")
 	bookCard.classList.add("book-card");
+    bookCard.setAttribute("data-book-id", book.id);
 
 	const bookReadStatus = document.createElement("p");
 	book.readStatus === "Read"
@@ -50,12 +51,29 @@ function displayBook(book) {
 	const bookNumberOfPages = document.createElement("p");
 	bookNumberOfPages.textContent = `Pages: ${book.numberOfPages}`;
 
+    const removeBookBtn = document.createElement("button");
+    removeBookBtn.textContent = "Remove";
+    removeBookBtn.classList.add("btn", "default-button", "remove-book-btn");
+
 	bookCard.appendChild(bookReadStatus);
 	bookCard.appendChild(bookTitle);
 	bookCard.appendChild(bookAuthor);
 	bookCard.appendChild(bookNumberOfPages);
+    bookCard.appendChild(removeBookBtn);
 	content.appendChild(bookCard);
 }
+
+function removeBookFromLibrary(bookId) {
+    const bookPosition = myLibrary.findIndex((book) => book.id === bookId);
+    myLibrary.splice(bookPosition, 1);
+}
+
+content.addEventListener("click", (e) => {
+    if (e.target.classList.contains("remove-book-btn")) {
+        removeBookFromLibrary(e.target.closest(".book-card").dataset.bookId);
+        e.target.closest(".book-card").remove();
+    }
+})
 
 addBookBtn.addEventListener("click", () => {
 	addBookModal.showModal();
