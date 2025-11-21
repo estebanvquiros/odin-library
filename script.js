@@ -19,6 +19,12 @@ function Book(title, author, numberOfPages, readStatus) {
 	this.readStatus = readStatus;
 }
 
+Book.prototype.changeReadStatus = function() {
+    this.readStatus === 'Read'
+    ? this.readStatus = 'Unread'
+    : this.readStatus = "Read";
+}
+
 function addBook(title, author, numberOfPages, readStatus) {
 	const book = new Book(title, author, numberOfPages, readStatus);
 	myLibrary.push(book);
@@ -55,11 +61,18 @@ function displayBook(book) {
     removeBookBtn.textContent = "Remove";
     removeBookBtn.classList.add("btn", "default-button", "remove-book-btn");
 
+    const changeBookReadStatusBtn = document.createElement("button");
+    changeBookReadStatusBtn.classList.add("btn", "primary-btn", "change-book-read-status-btn");
+    book.readStatus === "Read"
+    ? changeBookReadStatusBtn.textContent = "Mark as Unread"
+    : changeBookReadStatusBtn.textContent = "Mark as Read";
+
 	bookCard.appendChild(bookReadStatus);
 	bookCard.appendChild(bookTitle);
 	bookCard.appendChild(bookAuthor);
 	bookCard.appendChild(bookNumberOfPages);
     bookCard.appendChild(removeBookBtn);
+    bookCard.appendChild(changeBookReadStatusBtn);
 	content.appendChild(bookCard);
 }
 
@@ -68,10 +81,36 @@ function removeBookFromLibrary(bookId) {
     myLibrary.splice(bookPosition, 1);
 }
 
+function changeBookReadStatus(bookId) {
+    const bookPosition = myLibrary.findIndex((book) => book.id === bookId);
+    myLibrary[bookPosition].changeReadStatus();
+    return myLibrary[bookPosition].readStatus;
+}
+
+function updateDisplayBookReadStatus(readStatus, event) {
+    const bookReadStatusLabel = event.target.closest(".book-card").querySelector(".read-status");
+    const changeBookReadStatusBtn = event.target.closest(".book-card").querySelector(".change-book-read-status-btn");
+    if (readStatus === "Read") {
+        bookReadStatusLabel.textContent = "Read";
+        bookReadStatusLabel.classList.remove("unread");
+        bookReadStatusLabel.classList.add("read");
+        changeBookReadStatusBtn.textContent = "Mark as Unread";
+    } else {
+        bookReadStatusLabel.textContent = "Unread";
+        bookReadStatusLabel.classList.remove("read");
+        bookReadStatusLabel.classList.add("unread");
+        changeBookReadStatusBtn.textContent = "Mark as Read";
+    }
+}
+
 content.addEventListener("click", (e) => {
     if (e.target.classList.contains("remove-book-btn")) {
         removeBookFromLibrary(e.target.closest(".book-card").dataset.bookId);
         e.target.closest(".book-card").remove();
+    }
+    if (e.target.classList.contains("change-book-read-status-btn")) {
+        const readStatus = changeBookReadStatus(e.target.closest(".book-card").dataset.bookId);
+        updateDisplayBookReadStatus(readStatus, e);
     }
 })
 
