@@ -44,7 +44,7 @@ function displayBook(book) {
 
 	const bookReadStatus = document.createElement("p");
 	book.readStatus === "Read"
-		?	bookReadStatus.classList.add("read-status", "read")
+		? bookReadStatus.classList.add("read-status", "read")
 		: bookReadStatus.classList.add("read-status", "unread");
 	bookReadStatus.textContent = book.readStatus;
 
@@ -67,12 +67,20 @@ function displayBook(book) {
     ? changeBookReadStatusBtn.textContent = "Mark as Unread"
     : changeBookReadStatusBtn.textContent = "Mark as Read";
 
+    const bookInfo = document.createElement("div");
+    bookInfo.classList.add("book-info");
+    bookInfo.appendChild(bookTitle);
+    bookInfo.appendChild(bookAuthor);
+    bookInfo.appendChild(bookNumberOfPages);
+
+    const bookControls = document.createElement("div");
+    bookControls.classList.add("book-controls");
+    bookControls.appendChild(removeBookBtn);
+    bookControls.appendChild(changeBookReadStatusBtn);
+
 	bookCard.appendChild(bookReadStatus);
-	bookCard.appendChild(bookTitle);
-	bookCard.appendChild(bookAuthor);
-	bookCard.appendChild(bookNumberOfPages);
-    bookCard.appendChild(removeBookBtn);
-    bookCard.appendChild(changeBookReadStatusBtn);
+    bookCard.appendChild(bookInfo);
+    bookCard.appendChild(bookControls);
 	content.appendChild(bookCard);
 }
 
@@ -141,4 +149,14 @@ myLibrary.push(new Book("The First Law", "Joe Abercrombie", 537, "Unread"));
 getBooks();
 
 addBook("The Name of the Wind", "Patrick Rothfuss", 704, "Read");
+addBook("Mistborn: The Final Empire", "Brandon Sanderson", 541, "Read");
+addBook("Dune", "Frank Herbert", 688, "Read");
+addBook("The Way of Kings", "Brandon Sanderson", 1007, "Unread");
+addBook("Good Omens", "Neil Gaiman & Terry Pratchett", 432, "Unread");
+addBook("The Hobbit", "J.R.R. Tolkien", 310, "Read");
+addBook("1984", "George Orwell", 328, "Unread");
+addBook("Foundation", "Isaac Asimov", 255, "Unread");
+addBook("The Lies of Locke Lamora", "Scott Lynch", 722, "Read");
+addBook("The Blade Itself", "Joe Abercrombie", 560, "Read");
+addBook("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 309, "Read");
 

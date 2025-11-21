@@ -110,30 +110,37 @@ input, select {
 }
 
 .content {
+    align-items: start;
 	background-color: var(--bgColor-primary-muted);
 	display: grid;
 	flex: 1;
 	gap: 20px;
-	grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	padding: 20px;
 }
 
 .book-card {
 	background-color: var(--bgColor-neutral-40);
 	border-radius: 20px;
-	display: grid;
-	grid-template-rows: 1fr 1fr 1fr 1fr;
-	gap: 10px;
-	height: 20rem;
-	justify-items: center;
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    min-height: 360px;
+}
+
+.book-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .read-status {
-	align-self: center;
+    align-self: start;
 	border-radius: 0 50px 50px 0;
 	color: var(--fgColor-white);
-	font-size: 0.8rem;
-	justify-self: left;
+	font-size: 1rem;
+    margin-left: -20px;
 	padding: 5px 20px;
 }
 
@@ -145,16 +152,28 @@ input, select {
 	background-color: var(--bgColor-fail);
 }
 
-.book-card > h1 {
-	align-self: end;
+.book-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: center;
+}
+
+.book-info > h1 {
 	font-size: 1.5rem;
 	text-align: center;
 }
 
-.book-card > h2 {
-	align-self: start;
+.book-info > h2 {
 	font-size: 1rem;
 	font-style: italic;
+    text-align: center;
+}
+
+.book-info > p {
+    text-align: center;
+    font-weight: 400;
+    font-size: 0.9rem;
 }
 
 .footer {
