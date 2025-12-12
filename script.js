@@ -11,18 +11,20 @@ const addBookFormReadStatus = document.querySelector("#bookReadStatus");
 const addBookModal = document.querySelector("#addBookModal");
 const closeModalBtn = document.querySelector("#closeModalBtn");
 
-function Book(title, author, numberOfPages, readStatus) {
-	this.id = crypto.randomUUID();
-	this.title = title;
-	this.author = author;
-	this.numberOfPages = numberOfPages;
-	this.readStatus = readStatus;
-}
+class Book {
+    constructor(title, author, numberOfPages, readStatus){
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.numberOfPages = numberOfPages;
+        this.readStatus = readStatus;
+    }
 
-Book.prototype.changeReadStatus = function() {
-    this.readStatus === 'Read'
-    ? this.readStatus = 'Unread'
-    : this.readStatus = "Read";
+    changeReadStatus() {
+        this.readStatus === 'Read'
+        ? this.readStatus = 'Unread'
+        : this.readStatus = 'Read';
+    }
 }
 
 function addBook(title, author, numberOfPages, readStatus) {
