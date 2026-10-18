@@ -23,18 +23,21 @@
 		<dialog class="add-book-modal" id="addBookModal">
             <div>
                 <h1 class="form-title">Add Book</h1>
-                <form class="add-book-form" id="addBookForm">
+                <form class="add-book-form" id="addBookForm" novalidate>
                     <div class="form-field">
                         <label for="bookTitle">Title:</label>
                         <input type="text" name="bookTitle" id="bookTitle" required>
+                        <span class="error"></span>
                     </div>
                     <div class="form-field">
                         <label for="bookAuthor">Author:</label>
                         <input type="text" name="bookAuthor" id="bookAuthor" required>
+                        <span class="error"></span>
                     </div>
                     <div class="form-field">
                         <label for="bookNumberOfPages">Number of Pages:</label>
-                        <input type="number" name="bookNumberOfPages" id="bookNumberOfPages" min="1">
+                        <input type="text" name="bookNumberOfPages" id="bookNumberOfPages" required>
+                        <span class="error"></span>
                     </div>
                     <div class="form-field">
                         <label for="bookReadStatus">Read Status:</label>

@@ -11,6 +11,9 @@ const addBookFormReadStatus = document.querySelector("#bookReadStatus");
 const addBookModal = document.querySelector("#addBookModal");
 const closeModalBtn = document.querySelector("#closeModalBtn");
 
+const bookTitleError = document.querySelector("#bookTitle + span.error");
+const bookAuthorError = document.querySelector("#bookAuthor + span.error");
+
 class Book {
     constructor(title, author, numberOfPages, readStatus){
         this.id = crypto.randomUUID();
@@ -130,6 +133,10 @@ addBookBtn.addEventListener("click", () => {
 
 addBookForm.addEventListener("submit", (e) => {
     e.preventDefault(); //Avoid page reload on form submit
+
+    const formIsValid = formFields.map(validateFormField).every(Boolean); 
+    if (!formIsValid) return;
+
     addBook(
         addBookFormTitle.value,
         addBookFormAuthor.value,
@@ -138,12 +145,64 @@ addBookForm.addEventListener("submit", (e) => {
     );
     addBookModal.close();
     addBookForm.reset();
+    clearFormErrors();
 });
 
 closeModalBtn.addEventListener("click", () => {
 	addBookModal.close();
     addBookForm.reset();
+    clearFormErrors();
 });
+
+const formValidators = {
+    bookTitle: (value) => {
+        const title = value.trim();
+        if (title === "") return "Title is required";
+        if (title.length < 2) return "Title must be at least 2 characters long";
+        return "";
+    },
+    bookAuthor: (value) => {
+        const author = value.trim();
+        if (author === "") return "Author is required";
+        return "";
+    },
+    bookNumberOfPages: (value) => {
+        if (value.trim() === "") return "Number of pages is required";
+        const pages = Number(value.trim());
+        if (isNaN(pages)) return "Please enter a valid number";
+        if (!Number.isInteger(pages)) return "Number of pages must be an integer";
+        if (pages < 1) return "Must have at least 1 page";
+        if (pages > 10000) return "This number seems too big";
+        return "";
+    }
+}
+
+function validateFormField(input) {
+    const errorMessage = formValidators[input.id](input.value);
+    const errorSpan = input.nextElementSibling;
+
+    errorSpan.textContent = errorMessage;
+    input.classList.toggle("invalid", errorMessage !== "");
+
+    return errorMessage === "";
+}
+
+const formFields = [addBookFormTitle, addBookFormAuthor, addBookFormNumberOfPages];
+
+formFields.forEach((field) => {
+    field.addEventListener("blur", (e) => {
+        if (e.relatedTarget === closeModalBtn) return; // Prevents form validation when press cancel button
+        validateFormField(field);
+    });
+    field.addEventListener("input", () => {
+        if (field.classList.contains("invalid")) validateFormField(field);
+    });
+});
+
+function clearFormErrors() {
+    formFields.forEach((field) => field.classList.remove("invalid"));
+    addBookForm.querySelectorAll(".error").forEach((span) => (span.textContent = ""));
+}
 
 // Simulation of books stored previously in memory
 myLibrary.push(new Book("The Broken Sword", "Poul Anderson", 320, "Read"));

@@ -182,3 +182,16 @@ input, select {
 	padding: 15px;
 	text-align: center;
 }
+
+/* Invalid input */
+input.invalid {
+	background-color: #ffc6be;
+	border: 1px solid #f03e3e;
+}
+
+/* Error message */
+
+span.error {
+	color: #f03e3e;
+}
+
